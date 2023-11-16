@@ -1,4 +1,4 @@
-package resource;
+package source;
 
 public class Pizza {
 }
