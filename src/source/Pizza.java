@@ -9,4 +9,9 @@ public abstract class Pizza {
     protected boolean extraSauce;
     protected boolean extraCheese;
     public abstract double price(); //polymorphism
+
+    @Override
+    public String toString(){
+        return null;
+    }
 }
