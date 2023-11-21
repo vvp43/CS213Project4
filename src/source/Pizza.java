@@ -12,6 +12,19 @@ public abstract class Pizza {
 
     @Override
     public String toString(){
-        return null;
+        String fin = "["+getClass().getSimpleName()+"]";
+        String a = "";
+        for(Topping top : toppings){
+            a = a.concat(top+", ");
+        }
+        fin = fin.concat("["+a);
+        if(extraSauce){
+            fin = fin.concat("extra sauce, ");
+        }
+        if(extraCheese){
+            fin = fin.concat("extra cheese, ");
+        }
+        fin = fin.concat("$"+price());
+        return fin;
     }
 }

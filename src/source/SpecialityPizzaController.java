@@ -10,7 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 
-public class BuildYourOwnViewController {
+import java.util.List;
+
+public class SpecialityPizzaController {
 
     @FXML
     private Button addButton;
@@ -31,7 +33,7 @@ public class BuildYourOwnViewController {
     private ImageView pizzaImage;
 
     @FXML
-    private ComboBox<?> pizzaPicker;
+    private ComboBox<String> pizzaPicker;
 
     @FXML
     private TextField priceBox;
@@ -48,4 +50,24 @@ public class BuildYourOwnViewController {
     @FXML
     private ListView<?> toppingsList;
 
+    // Assume a method to initialize the storeOrders instance
+    @FXML
+    void initialize(){
+        StoreOrders storeOrders = new StoreOrders().getInstance();
+        pizzaPicker.getItems().addAll("Deluxe", "Supreme", "Meatzza");
+
+    }
+    @FXML
+    Pizza addOrder() {
+        if(smallButton.isSelected()){
+
+        } else if (mediumButton.isSelected()){
+
+        } else if (largeButton.isSelected()){
+
+        } else {
+
+        }
+        return null;
+    }
 }

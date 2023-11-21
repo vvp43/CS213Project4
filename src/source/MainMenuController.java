@@ -7,7 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainMenuController {
 
@@ -25,24 +26,80 @@ public class MainMenuController {
 
     @FXML
     void initialize(){
+        StoreOrders storeOrders = new StoreOrders().getInstance();
+        Order order1 = new Order();
+        Order order2 = new Order();
 
+        ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.MUSHROOM, Topping.BACON));
+
+        Pizza deluxePizza = PizzaMaker.createPizza("Supreme");
+        deluxePizza.toppings = toppings;
+        deluxePizza.extraSauce = true;
+        deluxePizza.extraCheese = false;
+        Pizza meatzzaPizza = PizzaMaker.createPizza("Meatzza");
+        meatzzaPizza.toppings = toppings;
+        meatzzaPizza.extraSauce = false;
+        meatzzaPizza.extraCheese = true;
+
+        order1.addPizza(deluxePizza);
+        order1.addPizza(deluxePizza);
+        order2.addPizza(meatzzaPizza);
+
+        storeOrders.placeOrder(order1);
+        storeOrders.placeOrder(order2);
     }
 
-    private Stage secondaryStage;
+    private Stage SpecialtyPizzaTab;
     public void openSecondaryScene() {
-        if (secondaryStage == null) {
+        if (SpecialtyPizzaTab == null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("BuildYourOwnView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("SpecialtyPizzaView.fxml"));
                 Parent root = loader.load();
-                secondaryStage = new Stage();
-                secondaryStage.setTitle("Choose Your Speciality Pizza");
-                secondaryStage.setScene(new Scene(root, 600, 650));
-                secondaryStage.setOnCloseRequest(event -> secondaryStage = null);
+                SpecialtyPizzaTab = new Stage();
+                SpecialtyPizzaTab.setTitle("Choose Your Speciality Pizza");
+                SpecialtyPizzaTab.setScene(new Scene(root, 600, 650));
+                SpecialtyPizzaTab.setOnCloseRequest(event -> SpecialtyPizzaTab = null);
 
-                secondaryStage.show();
+                SpecialtyPizzaTab.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
+    private Stage BuildYourOwnPizzaTab; //wrong fix later
+    public void openTertiaryScene() {
+        if (BuildYourOwnPizzaTab == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("SpecialtyPizzaView.fxml"));
+                Parent root = loader.load();
+                BuildYourOwnPizzaTab = new Stage();
+                BuildYourOwnPizzaTab.setTitle("Choose Your Speciality Pizza");
+                BuildYourOwnPizzaTab.setScene(new Scene(root, 600, 650));
+                BuildYourOwnPizzaTab.setOnCloseRequest(event -> BuildYourOwnPizzaTab = null);
+
+                BuildYourOwnPizzaTab.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Stage StoreOrdersTab;
+    public void openQuaternaryScene() {
+        if (StoreOrdersTab == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreOrdersView.fxml"));
+                Parent root = loader.load();
+                StoreOrdersTab = new Stage();
+                StoreOrdersTab.setTitle("Choose Your Speciality Pizza");
+                StoreOrdersTab.setScene(new Scene(root, 600, 650));
+                StoreOrdersTab.setOnCloseRequest(event -> StoreOrdersTab = null);
+
+                StoreOrdersTab.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
