@@ -11,7 +11,7 @@ public abstract class Pizza {
     public abstract double price(); //polymorphism
 
     @Override
-    public String toString(){
+    public String toString(){ // try not to print it all to one string please thanks!!!
         String fin = "["+getClass().getSimpleName()+"]";
         String a = "";
         for(Topping top : toppings){

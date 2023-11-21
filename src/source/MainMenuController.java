@@ -33,9 +33,10 @@ public class MainMenuController {
         ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.MUSHROOM, Topping.BACON));
 
         Pizza deluxePizza = PizzaMaker.createPizza("Supreme");
-        deluxePizza.toppings = toppings;
         deluxePizza.extraSauce = true;
         deluxePizza.extraCheese = false;
+        deluxePizza.toppings = toppings;
+        deluxePizza.size = Size.SMALL;
         Pizza meatzzaPizza = PizzaMaker.createPizza("Meatzza");
         meatzzaPizza.toppings = toppings;
         meatzzaPizza.extraSauce = false;
