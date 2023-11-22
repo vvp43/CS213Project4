@@ -26,28 +26,28 @@ public class MainMenuController {
 
     @FXML
     void initialize(){
-        StoreOrders storeOrders = new StoreOrders().getInstance();
-        Order order1 = new Order();
-        Order order2 = new Order();
-
-        ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.MUSHROOM, Topping.BACON));
-
-        Pizza deluxePizza = PizzaMaker.createPizza("Supreme");
-        deluxePizza.extraSauce = true;
-        deluxePizza.extraCheese = false;
-        deluxePizza.toppings = toppings;
-        deluxePizza.size = Size.SMALL;
-        Pizza meatzzaPizza = PizzaMaker.createPizza("Meatzza");
-        meatzzaPizza.toppings = toppings;
-        meatzzaPizza.extraSauce = false;
-        meatzzaPizza.extraCheese = true;
-
-        order1.addPizza(deluxePizza);
-        order1.addPizza(deluxePizza);
-        order2.addPizza(meatzzaPizza);
-
-        storeOrders.placeOrder(order1);
-        storeOrders.placeOrder(order2);
+//        StoreOrders storeOrders = new StoreOrders().getInstance();
+//        Order order1 = new Order();
+//        Order order2 = new Order();
+//
+//        ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.MUSHROOM, Topping.BACON));
+//
+//        Pizza deluxePizza = PizzaMaker.createPizza("Supreme");
+//        deluxePizza.extraSauce = true;
+//        deluxePizza.extraCheese = false;
+//        deluxePizza.toppings = toppings;
+//        deluxePizza.size = Size.SMALL;
+//        Pizza meatzzaPizza = PizzaMaker.createPizza("Meatzza");
+//        meatzzaPizza.toppings = toppings;
+//        meatzzaPizza.extraSauce = false;
+//        meatzzaPizza.extraCheese = true;
+//
+//        order1.addPizza(deluxePizza);
+//        order1.addPizza(deluxePizza);
+//        order2.addPizza(meatzzaPizza);
+//
+//        storeOrders.placeOrder(order1);
+//        storeOrders.placeOrder(order2);
     }
 
     private Stage SpecialtyPizzaTab;
@@ -97,6 +97,24 @@ public class MainMenuController {
                 StoreOrdersTab.setOnCloseRequest(event -> StoreOrdersTab = null);
 
                 StoreOrdersTab.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Stage PizzaOrdersTab;
+    public void openPrimaryScene() {
+        if (PizzaOrdersTab == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PizzaOrdersView.fxml"));
+                Parent root = loader.load();
+                PizzaOrdersTab = new Stage();
+                PizzaOrdersTab.setTitle("Choose Your Speciality Pizza");
+                PizzaOrdersTab.setScene(new Scene(root, 600, 650));
+                PizzaOrdersTab.setOnCloseRequest(event -> PizzaOrdersTab = null);
+
+                PizzaOrdersTab.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }

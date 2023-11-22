@@ -9,13 +9,13 @@ public class SpecialityPizzas {
         @Override
         public double price() {
             // Calculate the price for SupremePizza
-            double price;
+            double price = 15.99;
             if(size == Size.SMALL){
-                price = 14.99;
+                price += 0;
             } else if (size == Size.MEDIUM){
-                price = 16.99;
+                price += 2.00;
             } else {
-                price = 18.99;
+                price += 4.00;
             }
             if(extraCheese){
                 price+= 1.00;
@@ -24,7 +24,6 @@ public class SpecialityPizzas {
                 price+= 1.00;
             }
             return price;
-
         }
 
 
@@ -34,7 +33,21 @@ public class SpecialityPizzas {
         @Override
         public double price() {
             // Calculate the price for MeatzzaPizza
-            return 15.99;
+            double price = 16.99;
+            if(size == Size.SMALL){
+                price += 0;
+            } else if (size == Size.MEDIUM){
+                price += 2.00;
+            } else {
+                price += 4.00;
+            }
+            if(extraCheese){
+                price+= 1.00;
+            }
+            if(extraSauce){
+                price+= 1.00;
+            }
+            return price;
         }
     }
 
@@ -42,7 +55,21 @@ public class SpecialityPizzas {
         @Override
         public double price() {
             // Calculate the price for DeluxePizza
-            return 12.99;
+            double price = 14.99;
+            if(size == Size.SMALL){
+                price += 0;
+            } else if (size == Size.MEDIUM){
+                price += 2.00;
+            } else {
+                price += 4.00;
+            }
+            if(extraCheese){
+                price+= 1.00;
+            }
+            if(extraSauce){
+                price+= 1.00;
+            }
+            return price;
         }
     }
 
@@ -50,16 +77,48 @@ public class SpecialityPizzas {
         @Override
         public double price() {
             // Calculate the price for DeluxePizza
-            return 12.99;
+            double price = 10.99;
+            if(size == Size.SMALL){
+                price += 0;
+            } else if (size == Size.MEDIUM){
+                price += 2.00;
+            } else {
+                price += 4.00;
+            }
+            if(extraCheese){
+                price+= 1.00;
+            }
+            if(extraSauce){
+                price+= 1.00;
+            }
+            return price;
         }
     }
     public static class Seafood extends Pizza {
         @Override
         public double price() {
             // Calculate the price for DeluxePizza
-            return 12.99;
+            double price = 17.99;
+            if(size == Size.SMALL){
+                price += 0;
+            } else if (size == Size.MEDIUM){
+                price += 2.00;
+            } else {
+                price += 4.00;
+            }
+            if(extraCheese){
+                price+= 1.00;
+            }
+            if(extraSauce){
+                price+= 1.00;
+            }
+            return price;
         }
     }
     public static class BuildYourOwn {
+    }
+
+    public void calcPrice(){
+
     }
 }

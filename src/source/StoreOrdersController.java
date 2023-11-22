@@ -25,6 +25,7 @@ public class StoreOrdersController {
     @FXML
     private ListView<String> StoreOrderList;
 
+    private static Order orderForApproval;
     @FXML
     void initialize(){
         StoreOrders storeOrders = new StoreOrders().getInstance();
@@ -34,14 +35,19 @@ public class StoreOrdersController {
         }
         OrderNumberPicker.setOnAction(event -> onOrderSelected());
 
+        ExportStoreOrderButton.setOnAction(event -> onOrderSelected());
+
     }
     private void onOrderSelected() {
+        StoreOrders storeOrders = new StoreOrders().getInstance();
         Integer selectedOrderNumber = OrderNumberPicker.getValue();
         if (selectedOrderNumber != null) {
             Order selectedOrder = findOrder(selectedOrderNumber);
             if (selectedOrder != null) {
                 StoreOrderList.getItems().clear();
-                StoreOrderList.getItems().add(selectedOrder.toString());
+                for(Pizza a : selectedOrder.getPizzas()){
+                    StoreOrderList.getItems().add(a.toString());
+                }
             }
         }
     }
@@ -56,4 +62,6 @@ public class StoreOrdersController {
         }
         return null;
     }
+
+
 }

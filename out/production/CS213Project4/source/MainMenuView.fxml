@@ -33,7 +33,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="currentOrderButton" mnemonicParsing="false" prefHeight="190.0" prefWidth="420.0" text="CURRENT ORDER" GridPane.rowIndex="1">
+                  <Button fx:id="currentOrderButton" mnemonicParsing="false" onAction="#openPrimaryScene" prefHeight="190.0" prefWidth="420.0" text="CURRENT ORDER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Impact" size="25.0" />
                      </font>
