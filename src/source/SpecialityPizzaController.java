@@ -57,6 +57,7 @@ public class SpecialityPizzaController {
     // Assume a method to initialize the storeOrders instance
     @FXML
     void initialize() {
+        // Create and set the ListView reference
         StoreOrders storeOrders = new StoreOrders().getInstance();
         saucePicker.setEditable(false);
         priceBox.setEditable(false);
@@ -196,7 +197,6 @@ public class SpecialityPizzaController {
             }
         }
     }
-
 
     /**
      * isValidDouble() check if the String contains double is valid

@@ -60,7 +60,6 @@ public class MainMenuController {
                 SpecialtyPizzaTab.setTitle("Choose Your Speciality Pizza");
                 SpecialtyPizzaTab.setScene(new Scene(root, 600, 650));
                 SpecialtyPizzaTab.setOnCloseRequest(event -> SpecialtyPizzaTab = null);
-
                 SpecialtyPizzaTab.show();
             } catch (Exception e) {
                 e.printStackTrace();
