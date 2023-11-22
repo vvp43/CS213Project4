@@ -110,7 +110,7 @@ public class SpecialityPizzaController {
 
     private void onSpecialtySelected() {
         String pizzaType = pizzaPicker.getValue().toLowerCase();
-        System.out.println(pizzaType);
+        //System.out.println(pizzaType);
         ArrayList<String> tops = null;
         toppingsList.getItems().clear();
         switch(pizzaType) {
