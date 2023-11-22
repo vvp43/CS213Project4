@@ -19,8 +19,7 @@ public class SpecialityPizzas {
             }
             if(extraCheese){
                 price+= 1.00;
-            }
-            if(extraSauce){
+            } if(extraSauce){
                 price+= 1.00;
             }
             return price;
@@ -43,8 +42,7 @@ public class SpecialityPizzas {
             }
             if(extraCheese){
                 price+= 1.00;
-            }
-            if(extraSauce){
+            } if(extraSauce){
                 price+= 1.00;
             }
             return price;
@@ -65,8 +63,7 @@ public class SpecialityPizzas {
             }
             if(extraCheese){
                 price+= 1.00;
-            }
-            if(extraSauce){
+            } if(extraSauce){
                 price+= 1.00;
             }
             return price;
@@ -87,8 +84,7 @@ public class SpecialityPizzas {
             }
             if(extraCheese){
                 price+= 1.00;
-            }
-            if(extraSauce){
+            } if(extraSauce){
                 price+= 1.00;
             }
             return price;
@@ -108,8 +104,7 @@ public class SpecialityPizzas {
             }
             if(extraCheese){
                 price+= 1.00;
-            }
-            if(extraSauce){
+            } if(extraSauce){
                 price+= 1.00;
             }
             return price;

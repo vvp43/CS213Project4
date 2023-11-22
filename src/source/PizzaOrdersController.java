@@ -33,16 +33,11 @@ public class PizzaOrdersController {
     private static Order orderForApproval;
     @FXML
     void initialize(){
+        CurrentOrderViewer = new ListView<>();
         OrderNumber.setEditable(false);
-        if(orderForApproval != null){
-            OrderNumber.setText(Integer.toString(orderForApproval.getOrderNumber()));
-            for(Pizza a : orderForApproval.getPizzas())
-            {
-                CurrentOrderViewer.getItems().add(a.toString());
-            }
-        }
         PlaceOrderButton.setOnAction(event -> approveOrder());
     }
+
     public static void createOrder() {
         orderForApproval = new Order();
     }
