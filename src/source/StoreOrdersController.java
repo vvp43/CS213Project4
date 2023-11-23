@@ -1,5 +1,10 @@
 package source;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -26,6 +31,8 @@ public class StoreOrdersController {
     private ListView<String> StoreOrderList;
 
     private static Order orderForApproval;
+    private ScheduledService<Void> refreshService;
+
     @FXML
     void initialize(){
         StoreOrders storeOrders = new StoreOrders().getInstance();
@@ -34,8 +41,8 @@ public class StoreOrdersController {
             OrderNumberPicker.getItems().add(i);
         }
         OrderNumberPicker.setOnAction(event -> onOrderSelected());
-
-        ExportStoreOrderButton.setOnAction(event -> onOrderSelected());
+        //ExportStoreOrderButton.setOnAction(event -> onOrderSelected());
+        //setupRefreshService();
 
     }
     private void onOrderSelected() {
@@ -62,6 +69,7 @@ public class StoreOrdersController {
         }
         return null;
     }
+
 
 
 }

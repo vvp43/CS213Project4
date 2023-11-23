@@ -61,7 +61,7 @@ public class SpecialityPizzaController {
         StoreOrders storeOrders = new StoreOrders().getInstance();
         saucePicker.setEditable(false);
         priceBox.setEditable(false);
-        pizzaPicker.getItems().addAll("Deluxe", "Supreme", "Meatzza");
+        pizzaPicker.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
 
         pizzaPicker.setOnAction(event -> onSpecialtySelected());
 
@@ -118,18 +118,23 @@ public class SpecialityPizzaController {
             case "deluxe" -> {
                 tops = new ArrayList<>(Arrays.asList(Topping.SAUSAGE.ToppingName, Topping.PEPPERONI.ToppingName, Topping.GREEN_PEPPER.ToppingName, Topping.ONION.ToppingName, Topping.MUSHROOM.ToppingName));
                 toppingsList.getItems().addAll(tops);
+                saucePicker.setText("Tomato");
             } case "supreme" -> {
                 tops = new ArrayList<>(Arrays.asList(Topping.SAUSAGE.ToppingName, Topping.PEPPERONI.ToppingName, Topping.HAM.ToppingName, Topping.GREEN_PEPPER.ToppingName, Topping.ONION.ToppingName, Topping.BLACK_OLIVE.ToppingName, Topping.MUSHROOM.ToppingName));
                 toppingsList.getItems().addAll(tops);
+                saucePicker.setText("Tomato");
             } case "meatzza" -> {
                 tops = new ArrayList<>(Arrays.asList(Topping.SAUSAGE.ToppingName, Topping.PEPPERONI.ToppingName, Topping.BEEF.ToppingName, Topping.HAM.ToppingName));
                 toppingsList.getItems().addAll(tops);
+                saucePicker.setText("Tomato");
             } case "seafood" -> {
                 tops = new ArrayList<>(Arrays.asList(Topping.SHRIMP.ToppingName, Topping.SQUID.ToppingName, Topping.CRAB_MEATS.ToppingName));
                 toppingsList.getItems().addAll(tops);
+                saucePicker.setText("Alfredo");
             } case "pepperoni" -> {
                 tops = new ArrayList<>(List.of(Topping.PEPPERONI.ToppingName));
                 toppingsList.getItems().addAll(tops);
+                saucePicker.setText("Tomato");
             }
         }
         calculatePizzaPrice();
@@ -155,39 +160,46 @@ public class SpecialityPizzaController {
     }
     @FXML
     void addOrder() {
-        String pizzaType = pizzaPicker.getValue().toLowerCase();
-
-        if(pizzaType != null){
+        if(pizzaPicker.getValue() != null) {
+            String pizzaType = pizzaPicker.getValue().toLowerCase();
             Pizza specialPizza = null;
-            switch(pizzaType) {
+            switch (pizzaType) {
                 case "deluxe" -> {
                     specialPizza = PizzaMaker.createPizza("deluxe");
-                } case "supreme" -> {
+                }
+                case "supreme" -> {
                     specialPizza = PizzaMaker.createPizza("supreme");
-                } case "meatzza" -> {
+                }
+                case "meatzza" -> {
                     specialPizza = PizzaMaker.createPizza("meatzza");
                 }
+                case "seafood" -> {
+                    specialPizza = PizzaMaker.createPizza("seafood");
+                }
+                case "pepperoni" -> {
+                    specialPizza = PizzaMaker.createPizza("pepperoni");
+                }
             }
-            if(specialPizza != null){
-                if(smallButton.isSelected()){
+            if (specialPizza != null) {
+                if (smallButton.isSelected()) {
                     specialPizza.size = Size.SMALL;
-                } else if (mediumButton.isSelected()){
+                } else if (mediumButton.isSelected()) {
                     specialPizza.size = Size.MEDIUM;
-                } else if (largeButton.isSelected()){
+                } else if (largeButton.isSelected()) {
                     specialPizza.size = Size.LARGE;
                 } else {
                     //error retard
                 }
-                if(extraSauceButton.isSelected()){
+                if (extraSauceButton.isSelected()) {
                     specialPizza.extraCheese = true;
                 }
-                if(extraCheeseButton.isSelected()){
+                if (extraCheeseButton.isSelected()) {
                     specialPizza.extraCheese = true;
                 }
-                if(getToppingsList(pizzaType) != null){
+                if (getToppingsList(pizzaType) != null) {
                     specialPizza.toppings = getToppingsList(pizzaType);
                 }
-                if(PizzaOrdersController.getOrderForApproval() == null){
+                if (PizzaOrdersController.getOrderForApproval() == null) {
                     PizzaOrdersController.createOrder();
                 }
                 Order ExistingOrder = PizzaOrdersController.getOrderForApproval();
@@ -195,6 +207,8 @@ public class SpecialityPizzaController {
 
                 //System.out.println(order);
             }
+        } else {
+            //error
         }
     }
 

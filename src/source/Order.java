@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Order {
 
-    private static int nextOrderNumber = 1;
+    private static int nextOrderNumber = 0;
 
     private int orderNumber;
     private ArrayList<Pizza> pizzas;
@@ -22,6 +22,10 @@ public class Order {
     // Method to get the order number
     public int getOrderNumber() {
         return orderNumber;
+    }
+
+    public int getNextOrderNumber() {
+        return nextOrderNumber;
     }
 
     // Method to get the list of pizzas in the order
