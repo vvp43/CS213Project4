@@ -67,7 +67,6 @@ public class PizzaOrdersController {
 
         // Check if there are updates to the order, and update the UI accordingly
         if (orderForApproval != null) {
-            // For example, update a label with the order status
 
             Platform.runLater(() -> OrderNumber.setText(Integer.toString(orderForApproval.getOrderNumber())));
 
