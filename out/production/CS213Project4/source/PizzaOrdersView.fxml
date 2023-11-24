@@ -60,7 +60,7 @@
                   <Label text="Sales Tax $" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
                   <TextField fx:id="SubtotalTextField" prefHeight="25.0" prefWidth="138.0" GridPane.columnIndex="1" />
                   <TextField fx:id="SalesTaxTextField" prefHeight="25.0" prefWidth="134.0" GridPane.columnIndex="3" />
-                  <Button fx:id="RemovePizzaButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Remove Pizza" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+                  <Button fx:id="RemovePizzaButton" mnemonicParsing="false" onAction="#removePizza" prefHeight="25.0" prefWidth="100.0" text="Remove Pizza" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
             <GridPane GridPane.rowIndex="4">

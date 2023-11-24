@@ -18,6 +18,11 @@ public class Order {
     public void addPizza(Pizza pizza) {
         pizzas.add(pizza);
     }
+    public void removePizza(Pizza pizza) {
+        if (pizzas != null) {
+            pizzas.remove(pizza);
+        }
+    }
 
     // Method to get the order number
     public int getOrderNumber() {
@@ -27,6 +32,7 @@ public class Order {
     public int getNextOrderNumber() {
         return nextOrderNumber;
     }
+
 
     // Method to get the list of pizzas in the order
     public ArrayList<Pizza> getPizzas() {

@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.concurrent.Task;
 import javafx.concurrent.ScheduledService;
 import javafx.util.Duration;
+import java.text.DecimalFormat;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,7 +21,7 @@ import java.util.List;
 public class PizzaOrdersController {
 
     @FXML
-    private ListView<String> CurrentOrderViewer;
+    private ListView<Pizza> CurrentOrderViewer;
 
     @FXML
     private TextField OrderNumber;
@@ -61,6 +63,7 @@ public class PizzaOrdersController {
         refreshService.start();
     }
     private void checkForUpdates() {
+        DecimalFormat df = new DecimalFormat("#,##0.00");
 
         // Check if there are updates to the order, and update the UI accordingly
         if (orderForApproval != null) {
@@ -68,20 +71,31 @@ public class PizzaOrdersController {
 
             Platform.runLater(() -> OrderNumber.setText(Integer.toString(orderForApproval.getOrderNumber())));
 
-
-
             // Update the ListView with pizza details
             List<Pizza> pizzas = orderForApproval.getPizzas();
-            ObservableList<String> pizzaDetails = FXCollections.observableArrayList();
-            for (Pizza pizza : pizzas) {
-                pizzaDetails.add(pizza.toString());
-            }
+            ObservableList<Pizza> pizzaDetails = FXCollections.observableArrayList();
+            pizzaDetails.addAll(pizzas);
             Platform.runLater(() -> CurrentOrderViewer.setItems(pizzaDetails));
+            double subtotal = orderForApproval.calculateTotalPrice();
+            double sales = subtotal*0.0625;
+            double total = subtotal + sales;
+            Platform.runLater(() -> SubtotalTextField.setText(df.format(subtotal)));
+            Platform.runLater(() -> SalesTaxTextField.setText(df.format(sales)));
+            Platform.runLater(() -> TotalTextField.setText(df.format(total)));
+
         } else {
 
         }
     }
 
+
+    private void updatePizzaListView() {
+        if (orderForApproval != null) {
+            // Get the pizzas from the order and populate the ListView
+            ObservableList<Pizza> pizzas = FXCollections.observableArrayList(orderForApproval.getPizzas());
+            CurrentOrderViewer.setItems(pizzas);
+        }
+    }
 
     @FXML
     void initialize(){
@@ -99,10 +113,23 @@ public class PizzaOrdersController {
     public static void approveOrder(Order order) {
         orderForApproval = order;
     }
+
+    public void removePizza(){
+        Pizza selectedPizza = CurrentOrderViewer.getSelectionModel().getSelectedItem();
+        if(selectedPizza != null){
+            if(orderForApproval != null){
+                orderForApproval.removePizza(selectedPizza);
+            }
+            updatePizzaListView();
+        }
+    }
     public void approveOrder() {
         StoreOrders storeOrders = new StoreOrders().getInstance();
         CurrentOrderViewer.getItems().clear();
         OrderNumber.clear();
+        SalesTaxTextField.clear();
+        SubtotalTextField.clear();
+        TotalTextField.clear();
         if (orderForApproval != null) {
             // Add the approved order to storeOrders
             OrderNumber.setText(Integer.toString(orderForApproval.getNextOrderNumber()));

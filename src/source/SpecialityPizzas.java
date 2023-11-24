@@ -110,10 +110,31 @@ public class SpecialityPizzas {
             return price;
         }
     }
-    public static class BuildYourOwn {
+    public static class BuildYourOwn extends Pizza{
+        @Override
+        public double price() {
+            // Calculate the price for DeluxePizza
+            double price = 8.99;
+            if(size == Size.SMALL){
+                price += 0;
+            } else if (size == Size.MEDIUM){
+                price += 2.00;
+            } else {
+                price += 4.00;
+            }
+            if(extraCheese){
+                price+= 1.00;
+            } if(extraSauce){
+                price+= 1.00;
+            }
+            for(int i = 0; i < toppings.size(); i++){
+                if(i > 2){
+                    price+=1.49;
+                }
+            }
+            return price;
+        }
+
     }
 
-    public void calcPrice(){
-
-    }
 }
