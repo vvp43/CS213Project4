@@ -1,6 +1,11 @@
 package source;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class StoreOrders {
     private final static StoreOrders instance = new StoreOrders();
@@ -27,10 +32,30 @@ public class StoreOrders {
         return orders;
     }
 
+    public void addStoreOrdersChangeListener(ChangeListener<ObservableList<Order>> listener) {
+        ordersProperty.addListener(listener);
+    }
+
+    public String toString(){
+        String order = "";
+        for(Order a : orders){
+            order = order.concat("Order Number "+a.getOrderNumber()+":\n");
+            order = order.concat(a.toString()+"\n");
+        }
+        return order;
+    }
+
 
     // Private method to generate the next available order number
     private static int generateNextOrderNumber() {
         return nextAvailableOrderNumber++;
+    }
+    public List<Integer> getOrderNumbers() {
+        List<Integer> orderNumbers = new ArrayList<>();
+        for (Order order : orders) {
+            orderNumbers.add(order.getOrderNumber());
+        }
+        return orderNumbers;
     }
 
 
@@ -58,8 +83,10 @@ public class StoreOrders {
             for (Pizza pizza : order.getPizzas()) {
                 System.out.println("- " + pizza.getClass().getSimpleName() + ": $" + pizza.price());
             }
-            System.out.println("Total Order Price: $" + order.calculateTotalPrice());
+            System.out.println("Total Order Price: $" + order.calculateTotal());
             System.out.println("-------------");
         }
     }
+
+
 }

@@ -1,11 +1,11 @@
 package source;
 
 public enum Sauce {
-    TOMATO(0),
-    ALFREDO(1)
+    TOMATO("Tomato"),
+    ALFREDO("Alfredo")
     ;
-    final int sauceVal;
-    Sauce(int sauceVal){
+    final String sauceVal;
+    Sauce(String sauceVal){
         this.sauceVal = sauceVal;
     }
 }

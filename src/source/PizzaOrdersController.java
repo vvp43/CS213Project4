@@ -75,12 +75,9 @@ public class PizzaOrdersController {
             ObservableList<Pizza> pizzaDetails = FXCollections.observableArrayList();
             pizzaDetails.addAll(pizzas);
             Platform.runLater(() -> CurrentOrderViewer.setItems(pizzaDetails));
-            double subtotal = orderForApproval.calculateTotalPrice();
-            double sales = subtotal*0.0625;
-            double total = subtotal + sales;
-            Platform.runLater(() -> SubtotalTextField.setText(df.format(subtotal)));
-            Platform.runLater(() -> SalesTaxTextField.setText(df.format(sales)));
-            Platform.runLater(() -> TotalTextField.setText(df.format(total)));
+            Platform.runLater(() -> SubtotalTextField.setText(df.format(orderForApproval.calculateSubTotalPrice())));
+            Platform.runLater(() -> SalesTaxTextField.setText(df.format(orderForApproval.calculateSalesTax())));
+            Platform.runLater(() -> TotalTextField.setText(df.format(orderForApproval.calculateTotal())));
 
         } else {
 
@@ -102,6 +99,7 @@ public class PizzaOrdersController {
         if(orderForApproval != null){
             OrderNumber.setText(Integer.toString(orderForApproval.getNextOrderNumber()));
         }
+        updatePizzaListView();
         PlaceOrderButton.setOnAction(event -> approveOrder());
         setupRefreshService();
     }

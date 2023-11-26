@@ -1,5 +1,6 @@
 package source;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public abstract class Pizza {
@@ -12,19 +13,21 @@ public abstract class Pizza {
 
     @Override
     public String toString(){ // try not to print it all to one string please thanks!!!
+        DecimalFormat df = new DecimalFormat("#,##0.00");
         String fin = "["+getClass().getSimpleName()+"]";
         String a = "";
         for(Topping top : toppings){
             a = a.concat(top+", ");
         }
-        fin = fin.concat("["+a);
+        fin = fin.concat(" ["+size+"]");
+        fin = fin.concat(" ["+a);
         if(extraSauce){
             fin = fin.concat("extra sauce, ");
         }
         if(extraCheese){
             fin = fin.concat("extra cheese, ");
         }
-        fin = fin.concat("$"+price());
+        fin = fin.concat("][$"+df.format(price())+"]");
         return fin;
     }
 

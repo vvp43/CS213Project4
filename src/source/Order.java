@@ -1,5 +1,7 @@
 package source;
 
+import javafx.application.Platform;
+
 import java.util.ArrayList;
 
 public class Order {
@@ -52,11 +54,17 @@ public class Order {
         return fin;
     }
     // Method to calculate the total price of the order
-    public double calculateTotalPrice() {
+    public double calculateSubTotalPrice() {
         double totalPrice = 0.0;
         for (Pizza pizza : pizzas) {
             totalPrice += pizza.price();
         }
         return totalPrice;
+    }
+    public double calculateSalesTax(){
+        return calculateSubTotalPrice()*0.0625;
+    }
+    public double calculateTotal(){
+        return calculateSalesTax() + calculateSubTotalPrice();
     }
 }

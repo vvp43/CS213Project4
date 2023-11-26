@@ -70,7 +70,7 @@ public class MainMenuController {
     public void openTertiaryScene() {
         if (BuildYourOwnPizzaTab == null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("SpecialtyPizzaView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("BuildYourOwnView.fxml"));
                 Parent root = loader.load();
                 BuildYourOwnPizzaTab = new Stage();
                 BuildYourOwnPizzaTab.setTitle("Choose Your Speciality Pizza");
@@ -91,7 +91,7 @@ public class MainMenuController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreOrdersView.fxml"));
                 Parent root = loader.load();
                 StoreOrdersTab = new Stage();
-                StoreOrdersTab.setTitle("Choose Your Speciality Pizza");
+                StoreOrdersTab.setTitle("Store Orders");
                 StoreOrdersTab.setScene(new Scene(root, 600, 650));
                 StoreOrdersTab.setOnCloseRequest(event -> StoreOrdersTab = null);
 
@@ -109,7 +109,7 @@ public class MainMenuController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("PizzaOrdersView.fxml"));
                 Parent root = loader.load();
                 PizzaOrdersTab = new Stage();
-                PizzaOrdersTab.setTitle("Choose Your Speciality Pizza");
+                PizzaOrdersTab.setTitle("Current Order");
                 PizzaOrdersTab.setScene(new Scene(root, 600, 650));
                 PizzaOrdersTab.setOnCloseRequest(event -> PizzaOrdersTab = null);
 

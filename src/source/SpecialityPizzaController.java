@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -78,6 +79,7 @@ public class SpecialityPizzaController {
     }
 
     private void calculatePizzaPrice(){
+        DecimalFormat df = new DecimalFormat("#,##0.00");
         double total = 0;
         String selectedPizza = pizzaPicker.getValue();
         if(selectedPizza != null) {
@@ -93,7 +95,7 @@ public class SpecialityPizzaController {
             if(smallButton.isSelected()){
                 total +=0;
             } else if(mediumButton.isSelected()){
-                total += 2;
+                total += 2.00;
             } else if(largeButton.isSelected()){
                 total += 4;
             } else {
@@ -106,7 +108,7 @@ public class SpecialityPizzaController {
                 total+=1;
             }
         }
-        priceBox.setText(Double.toString(total));
+        priceBox.setText(df.format(total));
     }
 
     private void onSpecialtySelected() {
@@ -118,23 +120,23 @@ public class SpecialityPizzaController {
             case "deluxe" -> {
                 tops = new ArrayList<>(Arrays.asList(Topping.SAUSAGE.ToppingName, Topping.PEPPERONI.ToppingName, Topping.GREEN_PEPPER.ToppingName, Topping.ONION.ToppingName, Topping.MUSHROOM.ToppingName));
                 toppingsList.getItems().addAll(tops);
-                saucePicker.setText("Tomato");
+                saucePicker.setText(Sauce.TOMATO.sauceVal);
             } case "supreme" -> {
                 tops = new ArrayList<>(Arrays.asList(Topping.SAUSAGE.ToppingName, Topping.PEPPERONI.ToppingName, Topping.HAM.ToppingName, Topping.GREEN_PEPPER.ToppingName, Topping.ONION.ToppingName, Topping.BLACK_OLIVE.ToppingName, Topping.MUSHROOM.ToppingName));
                 toppingsList.getItems().addAll(tops);
-                saucePicker.setText("Tomato");
+                saucePicker.setText(Sauce.TOMATO.sauceVal);
             } case "meatzza" -> {
                 tops = new ArrayList<>(Arrays.asList(Topping.SAUSAGE.ToppingName, Topping.PEPPERONI.ToppingName, Topping.BEEF.ToppingName, Topping.HAM.ToppingName));
                 toppingsList.getItems().addAll(tops);
-                saucePicker.setText("Tomato");
+                saucePicker.setText(Sauce.TOMATO.sauceVal);
             } case "seafood" -> {
                 tops = new ArrayList<>(Arrays.asList(Topping.SHRIMP.ToppingName, Topping.SQUID.ToppingName, Topping.CRAB_MEATS.ToppingName));
                 toppingsList.getItems().addAll(tops);
-                saucePicker.setText("Alfredo");
+                saucePicker.setText(Sauce.ALFREDO.sauceVal);
             } case "pepperoni" -> {
                 tops = new ArrayList<>(List.of(Topping.PEPPERONI.ToppingName));
                 toppingsList.getItems().addAll(tops);
-                saucePicker.setText("Tomato");
+                saucePicker.setText(Sauce.TOMATO.sauceVal);
             }
         }
         calculatePizzaPrice();
@@ -194,7 +196,7 @@ public class SpecialityPizzaController {
                     specialPizza.extraCheese = true;
                 }
                 if (extraCheeseButton.isSelected()) {
-                    specialPizza.extraCheese = true;
+                    specialPizza.extraSauce = true;
                 }
                 if (getToppingsList(pizzaType) != null) {
                     specialPizza.toppings = getToppingsList(pizzaType);
