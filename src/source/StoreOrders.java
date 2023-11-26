@@ -32,9 +32,6 @@ public class StoreOrders {
         return orders;
     }
 
-    public void addStoreOrdersChangeListener(ChangeListener<ObservableList<Order>> listener) {
-        ordersProperty.addListener(listener);
-    }
 
     public String toString(){
         String order = "";

@@ -78,16 +78,16 @@ public class StoreOrdersController {
     }
     private void checkForUpdates() {
         DecimalFormat df = new DecimalFormat("#,##0.00");
-
+        StoreOrders storeOrders = new StoreOrders().getInstance();
         // Check if there are updates to the order, and update the UI accordingly
-        if (orderForApproval != null) {
-            StoreOrders storeOrders = new StoreOrders().getInstance();
-            // Update the ListView with pizza details
-            List<Order> orders = storeOrders.getAllOrders();
-            ObservableList<Order> orderDetails = FXCollections.observableArrayList();
-            orderDetails.addAll(orders);
-            Platform.runLater(() -> OrderNumberPicker.getItems().addAll(storeOrders.getOrderNumbers()));
-
+        if (storeOrders != null) {
+            Platform.runLater(() -> {
+                OrderNumberPicker.getItems().clear();
+                List<Order> allOrders = storeOrders.getAllOrders();
+                for(int i = 0; i < allOrders.size(); i++){
+                    OrderNumberPicker.getItems().add(i);
+                }
+            });
         }
     }
     private void onOrderSelected() {
