@@ -61,7 +61,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Button fx:id="BuildPizzaButton" mnemonicParsing="false" prefHeight="190.0" prefWidth="420.0" text="Build Your Own Pizza">
+                        <Button fx:id="BuildPizzaButton" mnemonicParsing="false" onAction="#openTertiaryScene" prefHeight="190.0" prefWidth="420.0" text="Build Your Own Pizza">
                            <font>
                               <Font name="Gabriola" size="25.0" />
                            </font>
