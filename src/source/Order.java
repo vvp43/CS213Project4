@@ -11,40 +11,69 @@ public class Order {
     private int orderNumber;
     private ArrayList<Pizza> pizzas;
 
+    /**
+     * Order Object Constructor
+     * Holds multiple Pizza Objects
+     */
     public Order() {
         this.orderNumber = nextOrderNumber++;
         this.pizzas = new ArrayList<>();
     }
 
-    // Method to add a pizza to the order
+    /**
+     * addPizza: adds Pizza to Order objects list of pizzas
+     * @param pizza pizza to be added
+     */
     public void addPizza(Pizza pizza) {
         pizzas.add(pizza);
     }
+
+    /**
+     * removePizza: removes Pizza from Order objects list of pizzas
+     * @param pizza pizza to be removed
+     */
     public void removePizza(Pizza pizza) {
         if (pizzas != null) {
             pizzas.remove(pizza);
         }
     }
 
-    // Method to get the order number
+    /**
+     * getOrderNumber: returns the unique order number of the current Order Object
+     * @return orderNumber
+     */
     public int getOrderNumber() {
         return orderNumber;
     }
 
+    /**
+     * getNextOrderNumber: returns the next order number after the current one.
+     * @return nextOrderNumber
+     */
     public int getNextOrderNumber() {
         return nextOrderNumber;
     }
 
-
-    // Method to get the list of pizzas in the order
+    /**
+     * getPizzas: Method to get the list of pizzas in the order as an ArrayList
+     * @return
+     */
     public ArrayList<Pizza> getPizzas() {
         return pizzas;
     }
 
+    /**
+     * sets current order number to another integer value
+     * @param orderNumber number of current order
+     */
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
     }
 
+    /**
+     * toString Override: writes Order in string format to be read easily
+     * @return String that lists all pizzas in string form and all their qualities.
+     */
     @Override
     public String toString(){
         String fin = "";
@@ -53,7 +82,11 @@ public class Order {
         }
         return fin;
     }
-    // Method to calculate the total price of the order
+
+    /**
+     * caluclateSubTotalPrice: Method to calculate the subtotal price of the order
+     * @return subtotal price of pizzas in order
+     */
     public double calculateSubTotalPrice() {
         double totalPrice = 0.0;
         for (Pizza pizza : pizzas) {
@@ -61,9 +94,19 @@ public class Order {
         }
         return totalPrice;
     }
+
+    /**
+     * calculateSalesTax: calculates the sales tax of an order
+     * @return sales tax of pizzas in order
+     */
     public double calculateSalesTax(){
         return calculateSubTotalPrice()*0.0625;
     }
+
+    /**
+     * calculateTotal: calculates the total cost of all pizzas in an order
+     * @return total cost
+     */
     public double calculateTotal(){
         return calculateSalesTax() + calculateSubTotalPrice();
     }

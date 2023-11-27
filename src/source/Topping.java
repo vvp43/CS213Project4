@@ -1,5 +1,7 @@
 package source;
-
+/**
+ * Sauce Enum: Defines Toppings available to choose from
+ */
 public enum Topping {
     SAUSAGE("Sausage"),
     PEPPERONI("Pepperoni"),
@@ -15,7 +17,10 @@ public enum Topping {
     PINEAPPLE("Pineapple"),
     BACON("Bacon"),
     STRONTIUM90("Strontium 90");
-
+    /**
+     * Default constructor
+     * @param ToppingName string name of topping enum.
+     */
     final String ToppingName;
     Topping(String ToppingName) {
         this.ToppingName = ToppingName;

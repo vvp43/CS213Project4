@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -43,6 +44,10 @@ public class PizzaOrdersController {
 
     private static Order orderForApproval;
     private ScheduledService<Void> refreshService;
+
+    /**
+     * setupRefreshService: Service used to instantiate constant updates to the current order window
+     */
     private void setupRefreshService() {
         refreshService = new ScheduledService<>() {
             @Override
@@ -57,11 +62,14 @@ public class PizzaOrdersController {
                 };
             }
         };
-
-        // Set the period for the refresh service (e.g., every 5 seconds)
         refreshService.setPeriod(Duration.millis(100));
         refreshService.start();
     }
+
+    /**
+     * checkForUpdates: Method that decides what to update within the Current order tab, such as
+     * Order Numbers, pizzas in Order, prices, etc.
+     */
     private void checkForUpdates() {
         DecimalFormat df = new DecimalFormat("#,##0.00");
 
@@ -84,7 +92,9 @@ public class PizzaOrdersController {
         }
     }
 
-
+    /**
+     * updatePizzaListView: Helper method to update list of pizzas in an order
+     */
     private void updatePizzaListView() {
         if (orderForApproval != null) {
             // Get the pizzas from the order and populate the ListView
@@ -93,6 +103,9 @@ public class PizzaOrdersController {
         }
     }
 
+    /**
+     * initialize: initial method run at the creation of controller.
+     */
     @FXML
     void initialize(){
         OrderNumber.setEditable(false);
@@ -104,13 +117,15 @@ public class PizzaOrdersController {
         setupRefreshService();
     }
 
+    /**
+     * createOrder: creates an instance of orderForApproval to be passed through different controllers for approval
+     */
     public static void createOrder() {
         orderForApproval = new Order();
     }
-    public static void approveOrder(Order order) {
-        orderForApproval = order;
-    }
-
+    /**
+     * removePizza: removes selected pizza from listViewer of pizzas in an order, to remove it from the Order list.
+     */
     public void removePizza(){
         Pizza selectedPizza = CurrentOrderViewer.getSelectionModel().getSelectedItem();
         if(selectedPizza != null){
@@ -120,6 +135,11 @@ public class PizzaOrdersController {
             updatePizzaListView();
         }
     }
+
+    /**
+     * approveOrder: Approves list of pizzas in Order for the store and places it, moving it to the store orders
+     * object.
+     */
     public void approveOrder() {
         StoreOrders storeOrders = new StoreOrders().getInstance();
         CurrentOrderViewer.getItems().clear();
@@ -127,15 +147,35 @@ public class PizzaOrdersController {
         SalesTaxTextField.clear();
         SubtotalTextField.clear();
         TotalTextField.clear();
-        if (orderForApproval != null) {
+        if (orderForApproval != null && !orderForApproval.getPizzas().isEmpty()) {
             // Add the approved order to storeOrders
             OrderNumber.setText(Integer.toString(orderForApproval.getNextOrderNumber()));
             storeOrders.placeOrder(orderForApproval);
 
             // Reset orderForApproval to null for the next order
             orderForApproval = null;
+        } else {
+            showErrorPopup("Error: Nothing in Order!");
         }
     }
+
+    /**
+     * showErrorPopup: Method used to generate Error popups
+     * @param message error message to display
+     */
+    private void showErrorPopup(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    /**
+     * getOrderForApproval: static method using in other classes to return an Order for approval through
+     * different controllers.
+     * @return orderForApproval
+     */
     public static Order getOrderForApproval() {
         return orderForApproval;
     }

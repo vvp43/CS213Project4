@@ -14,20 +14,20 @@ public class MainMenuMain extends Application {
         launch(args);
     }
 
+    /**
+     * start: sets program, sets scene, launches program
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuMain.class.getResource("MainMenuView.fxml"));
         MainMenuController controller1 = fxmlLoader.getController();
-
-
-        // Pass the same instance of StoreOrders to both controllers
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
 
         stage.setResizable(false);
         stage.setTitle("Project 4 - RU Pizzeria Manager");
         stage.setScene(scene);
         stage.show();
-
-
     }
 }

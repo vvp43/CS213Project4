@@ -11,6 +11,10 @@ public abstract class Pizza {
     protected boolean extraCheese;
     public abstract double price(); //polymorphism
 
+    /**
+     * toString Override: prints pizza object and all its qualities in string format.
+     * @return String
+     */
     @Override
     public String toString(){ // try not to print it all to one string please thanks!!!
         DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -20,6 +24,7 @@ public abstract class Pizza {
             a = a.concat(top+", ");
         }
         fin = fin.concat(" ["+size+"]");
+        fin = fin.concat(" ["+sauce+"]");
         fin = fin.concat(" ["+a);
         if(extraSauce){
             fin = fin.concat("extra sauce, ");

@@ -10,52 +10,74 @@ import javafx.collections.ObservableList;
 public class StoreOrders {
     private final static StoreOrders instance = new StoreOrders();
     private static int nextAvailableOrderNumber = 0;
-    private static final int nextOrderNum = 1;
     private int orderNum;
     private final ArrayList<Order> orders;
 
+    /**
+     * Default Constructor of StoreOrders
+     */
     public StoreOrders() {
         this.orders = new ArrayList<>();
     }
+
+    /**
+     * Instance of StoreOrders to have the same storeOrders accessible throughout Controllers and classes.
+     * @return instance of storeorders instance.
+     */
     public StoreOrders getInstance(){
         return instance;
     }
 
-    // Method to place a new order
+    /**
+     * placeOrder: places an Order by adding it to Store Orders
+     * @param order Order to be placed
+     */
     public void placeOrder(Order order) {
         order.setOrderNumber(generateNextOrderNumber());
         orders.add(order);
     }
 
-    // Method to get the list of all orders
+    /**
+     * cancelOrder: cancels an Order by removing it to Store Orders
+     * @param order Order to be cancelled
+     */
+    public void cancelOrder(Order order){
+        orders.remove(order);
+    }
+
+    /**
+     * Method to get the list of all orders in the storeOrders instance.
+     * @return orders list
+     */
     public ArrayList<Order> getAllOrders() {
         return orders;
     }
 
-
+    /**
+     * toString Override: writes all orders in storeOrders instance to String
+     * @return string containing all orders in the store orders instance.
+     */
     public String toString(){
         String order = "";
         for(Order a : orders){
-            order = order.concat("Order Number "+a.getOrderNumber()+":\n");
+            order = order.concat("Order Number "+a.getOrderNumber()+"| Order Total: "+a.calculateTotal()+"\n");
             order = order.concat(a.toString()+"\n");
         }
         return order;
     }
 
-
-    // Private method to generate the next available order number
+    /**
+     * generateNextOrderNumber: Private method to generate the next available order number
+     * @return
+     */
     private static int generateNextOrderNumber() {
         return nextAvailableOrderNumber++;
     }
-    public List<Integer> getOrderNumbers() {
-        List<Integer> orderNumbers = new ArrayList<>();
-        for (Order order : orders) {
-            orderNumbers.add(order.getOrderNumber());
-        }
-        return orderNumbers;
-    }
 
-
+    /**
+     * testbed
+     * @param args
+     */
     public static void main(String[] args) {
         StoreOrders storeOrders = new StoreOrders();
 

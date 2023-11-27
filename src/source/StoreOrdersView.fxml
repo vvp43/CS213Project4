@@ -57,7 +57,7 @@
                   <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="CancelOrderButton" mnemonicParsing="false" prefHeight="28.0" prefWidth="244.0" text="Cancel Button" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button fx:id="CancelOrderButton" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="28.0" prefWidth="244.0" text="Cancel Button" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <Button fx:id="ExportStoreOrderButton" mnemonicParsing="false" onAction="#exportStoreOrdersToFile" prefHeight="75.0" prefWidth="244.0" text="Export Store Orders" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                </children>
             </GridPane>
